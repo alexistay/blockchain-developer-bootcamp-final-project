@@ -13,3 +13,19 @@ This produces real scarcity, as there can only be a certain number of this NFT, 
 2. Webpage shows the current Ethereum price.
 3. If an NFT for that price has not been minted before, the user is allowed to mint the NFT for that price.
 4. Webpage also shows the current price, and a list of prices above and below the current price. For each price, it shows whether the NFT for that price has already been minted.
+
+
+# Another possible idea is a lucky draw generator
+
+## Concept
+There exists websites where you can enter a list of options, and the website will choose a winner for you. My idea is to convert it to use the blockchain so that it is provable fair.
+
+## Work Flow
+1. User visits webpage and signs up for a draw and gets a draw ID
+2. User publishes draw ID, and let's people sign up for the draw.
+3. When the draw closes, user submits list of contestants to the webpage. List is "published" (maybe via Merkel tree?) on the webpage.
+4. Webpage choose a random winner from using blockchain as source of randomness.
+
+* Draw ID published at the start of the contest ensures that organiser cannot cheat by having multiple draws.
+* List of entries are published before the winner is choosen so that contestants can prove that they are in the list of possible winners.
+* Random number is sourced from blockchain so organiser cannot control which number will be choosen.
