@@ -56,20 +56,22 @@ async function downloadIpfs(cid) {
 }
 
 if(typeof window.ethereum !== 'undefined') {
-    let mmDetected = document.getElementById('mm-detected');
-    mmDetected.innerHTML = 'MetaMask detected';
+  let mmDetected = document.getElementById('mm-detected');
+  mmDetected.innerHTML = 'MetaMask detected';
 } else {
-    alert('Please install MetaMask first!');
+  alert('Please install MetaMask first!');
 }
-var web3 = new Web3(window.ethereum)
-const ldc = new web3.eth.Contract(ldcABI, ldcAddress)
-ldc.setProvider(window.ethereum)
+
 
 const mmConnect = document.getElementById('mm-connect');
 mmConnect.onclick = async () => {
-    console.log("mmConnect clicked");
-    await ethereum.request({method: 'eth_requestAccounts' });
-    document.getElementById('mm-current-account').innerHTML = "Connected to: " + ethereum.selectedAddress + " on chainId " + ethereum.chainId;        
+  console.log("mmConnect clicked");
+  await ethereum.request({method: 'eth_requestAccounts' });
+  document.getElementById('mm-current-account').innerHTML = "Connected to: " + ethereum.selectedAddress + " on chainId " + ethereum.chainId;        
+  
+  web3 = new Web3(window.ethereum)
+  ldc = new web3.eth.Contract(developmentABI, developmentAddress)
+  ldc.setProvider(window.ethereum)
 }
 
 const textName = document.getElementById('name');
