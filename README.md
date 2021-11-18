@@ -15,3 +15,40 @@ The main idea is to use the blockchain such that
 4. Operator submits list of entries to website.
 5. Webpage choose a random winner from entries via the blockchain
 
+
+## Directory Structure
+* `client` - frontend files
+* `contracts` - solidity contract files
+* `migrations` - truffle migration scripts
+* `test` - truffle javascript test files for smart contract
+
+## Deployed version url
+* vercel.app
+
+## Installing Dependencies
+* `npm install` 
+## Accessing Project
+
+## Running Smart Contract Unit Tests
+* Run ganache-cli listening on port 8545 (should be the default) and then run `truffle test`
+```
+ganache-cli -m
+truffle test
+```
+## Simple Workflow
+### Create Lucky Draw
+
+### Verify Lucky Draw
+
+## Public Ethereum wallet for certification:
+* `0x5B0d420c2b2EA93aAA870B86E0F24EaD4932F46E`
+
+
+## TODO
+* Better UI. 
+  * Seperate UI for verifying lucky draws vs creating.
+  * React App?
+* IPFS pinning.
+* Chainlink VRF for generating random numbers to pick winners. 
+
+
