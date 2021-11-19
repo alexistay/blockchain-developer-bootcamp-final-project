@@ -79,7 +79,7 @@ contract LuckyDrawController is Ownable, Pausable {
         emit LuckyDrawWinnerPicked(luckyDraws[_luckyDrawId]);
     }
 
-    function setSalt(uint256 _luckyDrawId, string memory _salt) public whenNotPaused() onlyLuckyDrawOwner(_luckyDrawId) returns (LuckyDraw memory) {
+    function setSalt(uint256 _luckyDrawId, string memory _salt) public whenNotPaused() onlyLuckyDrawOwner(_luckyDrawId) {
         require(luckyDraws[_luckyDrawId].luckyDrawState == LuckyDrawState.WinnerSet, "State not WinnerSet");
         luckyDraws[_luckyDrawId].salt = _salt;
         luckyDraws[_luckyDrawId].luckyDrawState = LuckyDrawState.SaltSet;
