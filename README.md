@@ -9,12 +9,20 @@ The main idea is to use the blockchain such that
 * users can get the number of entries
 
 ## Work Flow
-1. Contest operator visits webpage and signs up for a draw and gets a draw ID.
-2. Operator publishes draw ID. This draw ID is used so that there can only be 1 draw done.
+### Lucky Draw Operator
+1. Lucky draw operator visits webpage and signs up for a draw and gets a draw ID.
+2. Operator publishes draw ID. This draw ID is used so that there the operator cannot draw multiply times until his desired winner comes up and then show the out come of that draw.
 3. Operator allows people to enter the draw and gets a list of entries. This is not part of the scope of the project.
-4. Operator submits list of entries to website.
-5. Webpage choose a random winner from entries via the blockchain
+4. Operator submits list of entries and a salt to website.
+   1. Website adds a salt to each entry, hashs each entry
+   2. Website saves the list of hashed salted entry to IPFS
+   3. Website hashes the hashed salted entry.
+   4. IPFS cid and final hash is submitted and saved on blockchain.
+5. Operator gets the winners from the webpage via the blockchain.
+6. Once all the desired number of winnerse are obtained, operator submits and saved salt onto the blockchain.
 
+### Lucky Draw Participant
+1. 
 
 ## Directory Structure
 * `client` - frontend files
@@ -23,26 +31,31 @@ The main idea is to use the blockchain such that
 * `test` - truffle javascript test files for smart contract
 
 ## Deployed version url
-* https://damp-wave-55127.herokuapp.com/
+* [https://damp-wave-55127.herokuapp.com/ ](https://damp-wave-55127.herokuapp.com)
 
 ## Installing Dependencies
 * `npm install` 
 ## Accessing Project
-
+Clone to local folder
+```
+git clone xxx
+```
+Install Dependencies
+```
+node install
+```
+Deploy project to heroku
+```
+npm run heroku
+```
 ## Running Smart Contract Unit Tests
-* Run ganache-cli listening on port 8545 (should be the default) and then run `truffle test`
+* Run ganache-cli listening on port 8545 and chain 1337 (should be the default) and then run `truffle test`
 ```
 ganache-cli -m
 truffle test
 ```
-## Simple Workflow
-### Create Lucky Draw
-
-### Verify Lucky Draw
-
 ## Public Ethereum wallet for certification:
 * `0x5B0d420c2b2EA93aAA870B86E0F24EaD4932F46E`
-
 
 ## TODO
 * Better UI. 

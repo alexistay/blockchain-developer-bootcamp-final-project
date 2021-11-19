@@ -13,10 +13,18 @@ module.exports = async function (deployer, network, accounts) {
   const contract = JSON.parse(fs.readFileSync('./build/contracts/LuckyDrawController.json', 'utf8'));
   fs.writeFileSync('./build/contracts/LuckyDrawController.abi', JSON.stringify(contract.abi));
 
+  js = "const developmentAddress = " + JSON.stringify(deployed.address) + ";\n";
+  js += "const developmentABI = " + JSON.stringify(contract.abi) + ";\n";
+
   if (network == "development") {
     js = "const developmentAddress = " + JSON.stringify(deployed.address) + ";\n";
-    js += "const developmentABI = " + JSON.stringify(contract.abi) + ";\n";
+    js += "const developmentABI = " + JSON.stringify(contract.abi) + ";\n";  
     fs.writeFileSync('./client/development.js', js);
+  } else if (network == "ropsten") {
+    js = "const ropstenAddress = " + JSON.stringify(deployed.address) + ";\n";
+    js += "const ropstenABI = " + JSON.stringify(contract.abi) + ";\n";      
+    fs.writeFileSync('./client/ropsten.js', js);
   }
+
   console.log("LuckyDrawController deployed at " + deployed.address);
 };
