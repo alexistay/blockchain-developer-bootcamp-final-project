@@ -1,38 +1,3 @@
-function fallbackCopyTextToClipboard(text) {
-  var textArea = document.createElement("textarea");
-  textArea.value = text;
-  
-  // Avoid scrolling to bottom
-  textArea.style.top = "0";
-  textArea.style.left = "0";
-  textArea.style.position = "fixed";
-
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-
-  try {
-    var successful = document.execCommand('copy');
-    var msg = successful ? 'successful' : 'unsuccessful';
-    console.log('Fallback: Copying text command was ' + msg);
-  } catch (err) {
-    console.error('Fallback: Oops, unable to copy', err);
-  }
-
-  document.body.removeChild(textArea);
-}
-function copyTextToClipboard(text) {
-  if (!navigator.clipboard) {
-    fallbackCopyTextToClipboard(text);
-    return;
-  }
-  navigator.clipboard.writeText(text).then(function() {
-    console.log('Async: Copying to clipboard was successful!');
-  }, function(err) {
-    console.error('Async: Could not copy text: ', err);
-  });
-}
-
 
 async function uploadIpfs(data) {
   if (typeof ipfs === 'undefined') {
@@ -68,9 +33,17 @@ mmConnect.onclick = async () => {
   console.log("mmConnect clicked");
   await ethereum.request({method: 'eth_requestAccounts' });
   document.getElementById('mm-current-account').innerHTML = "Connected to: " + ethereum.selectedAddress + " on chainId " + ethereum.chainId;        
+
   
+  if (ethereum.chainId == 0x3) {
+    abi = ropstenABI;
+    address = ropstenAddress;
+  } else {
+    abi = developmentABI;
+    address = developmentAddress;
+  }
   web3 = new Web3(window.ethereum)
-  ldc = new web3.eth.Contract(developmentABI, developmentAddress)
+  ldc = new web3.eth.Contract(abi, address)
   ldc.setProvider(window.ethereum)
 }
 

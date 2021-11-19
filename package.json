@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "ganache": "ganache-cli -d",
-    "start" : "npx http-server "
+    "start": "npx http-server client",
+    "heroku": "git push heroku main"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   "homepage": "https://github.com/alexistay/blockchain-developer-bootcamp-final-project#readme",
   "devDependencies": {
     "@openzeppelin/contracts": "^4.3.2",
+    "@truffle/hdwallet-provider": "^1.7.0",
     "chai": "^4.3.4",
     "ganache-cli": "^6.12.2",
     "mocha": "^9.1.3",
