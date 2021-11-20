@@ -76,10 +76,10 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         let luckyDraw = await luckyDrawControllerInstance.getLuckyDraw(luckyDrawId);
         assert.equal(luckyDraw[2], entries, "Entries should be set");
-        assert.equal(luckyDraw.entriesURL, "ENTRYURL", "Entries URL should be set");
+        assert.equal(luckyDraw.entriesIPFScid, "IPFScid", "IPFScid should be set");
         assert.equal(luckyDraw.numEntries, 100, "Number of entries should be set");
         assert.equal(luckyDraw.luckyDrawState, 1, "Lucky draw state should be entriesSet");
       })
@@ -89,7 +89,7 @@ contract("LuckyDrawController", function(accounts) {
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
         try {
-          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100, {from: accounts[1]});
+          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100, {from: accounts[1]});
         } catch(err) {
           assert.equal(err.reason, "Not owner");
         }
@@ -101,7 +101,7 @@ contract("LuckyDrawController", function(accounts) {
         let luckyDrawId = result.logs[0].args.luckyDrawId;
         await luckyDrawControllerInstance.pause();
         try {
-          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         } catch(err) {
           assert.equal(err.reason, "Pausable: paused");
           await luckyDrawControllerInstance.unpause();
@@ -112,9 +112,9 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         try {
-          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         } catch(err) {
           assert.equal(err.reason, "State not Created");
         }
@@ -124,10 +124,10 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         await luckyDrawControllerInstance.pickWinner(luckyDrawId);
         try {
-          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         } catch(err) {
           assert.equal(err.reason, "State not Created");
         }
@@ -137,11 +137,11 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         await luckyDrawControllerInstance.pickWinner(luckyDrawId);
         await luckyDrawControllerInstance.setSalt(luckyDrawId, "salt");
         try {
-          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+          await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         } catch(err) {
           assert.equal(err.reason, "State not Created");
         }
@@ -155,7 +155,7 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         await luckyDrawControllerInstance.pickWinner(luckyDrawId);
         await luckyDrawControllerInstance.pickWinner(luckyDrawId);
         let winners = await luckyDrawControllerInstance.getWinners(luckyDrawId);
@@ -169,7 +169,7 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         let winners = await luckyDrawControllerInstance.getWinners(luckyDrawId);
         await luckyDrawControllerInstance.pause();
         try {
@@ -195,7 +195,7 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         await luckyDrawControllerInstance.pickWinner(luckyDrawId);
         await luckyDrawControllerInstance.setSalt(luckyDrawId, "salt");
         try {
@@ -211,7 +211,7 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         let winners = await luckyDrawControllerInstance.getWinners(luckyDrawId);
         await luckyDrawControllerInstance.pickWinner(luckyDrawId);
         await luckyDrawControllerInstance.setSalt(luckyDrawId, "salt");
@@ -223,7 +223,7 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         let winners = await luckyDrawControllerInstance.getWinners(luckyDrawId);
         await luckyDrawControllerInstance.pickWinner(luckyDrawId);
         await luckyDrawControllerInstance.setSalt(luckyDrawId, "salt");
@@ -250,7 +250,7 @@ contract("LuckyDrawController", function(accounts) {
         let entries = web3.utils.sha3("Entry1\nEntry2");
         result = await luckyDrawControllerInstance.createLuckyDraw("Lucky Draw");
         let luckyDrawId = result.logs[0].args.luckyDrawId;
-        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "ENTRYURL", 100);
+        await luckyDrawControllerInstance.setEntries(luckyDrawId, entries, "IPFScid", 100);
         try {
           await luckyDrawControllerInstance.setSalt(luckyDrawId, "salt");
         } catch(err) {
