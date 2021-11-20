@@ -6,10 +6,11 @@ This project was inspired due to the controversies in 2019 when Justin Sun promi
 
 The main idea is to use the blockchain such that
 * the draw can only be conducted once
-* random winner is selected by the blockchain
+* 1 or more winners are selected randombly by the blockchain
 * users can ascertain that they are in the list of entries
-* users cannot get the entire list of entries
 * users can get the number of entries
+* users cannot get the entire list of entries (privacy issue)
+
 
 ## Work Flow
 ### Lucky Draw Operator
@@ -29,6 +30,24 @@ The main idea is to use the blockchain such that
 2. Downloads the concatenated hashed salted entries from IPFS based on the IPFS cid stored in the lucky draw, and confirms that the hash of the concatenated hashed salted entries matches that stored in the lucky draw.
 3. Salt their own entry, hash it, and confirm that the hashed salted entry is within the concatenated hashed salted entries.
 
+### Design Considerations
+* Complete list of entries should not be stored on the blockchain due to size issues
+  * Entries are stored on IPFS to reduce amount of data stored on the blockchain.
+  * Stored on the blockchain:
+    * IPFS cid - to download entries when needed.
+    * Hash of entries - to confirm that the entries are correct and not changed.
+* All entries should not be visible to the public.
+  * Entries are hashed before stored on IPFS. Actual entries are never uploaded.
+* Purpose of the salt
+  * Random number used to pick the winner is based on the hash of the following:
+    * block.difficulty
+    * block.timestamp
+    * Lucky Draw ID
+    * Existing number of winners
+  * As the block.timestamp is controlled by the block proposer, it is possible for the block proposer to control the choice of winner.
+  * In order to prevent this, the entries are salted before hashed. The block proposer will not be able know the actual entries as they do not have access to the salt when the lucky draw winner is picked.
+  * Only after the lucky draw winners have been picked, the salt is saved to the blockchain. This allows anyone to check that their entry is on the list of entries.
+ 
 ## Directory Structure
 * `client` - frontend files
 * `contracts` - solidity contract files
