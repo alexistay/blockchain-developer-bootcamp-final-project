@@ -2,7 +2,7 @@
 
 //require('dotenv').config()
 
-//const fs = require('fs');
+const fs = require('fs');
 
 const LuckyDrawController = artifacts.require('LuckyDrawController');
 
