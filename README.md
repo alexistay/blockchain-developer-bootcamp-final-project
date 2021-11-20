@@ -58,7 +58,7 @@ The main idea is to use the blockchain such that
 * `migrations` - truffle migration scripts
 * `test` - truffle javascript test files for smart contract
 
-# Deployed version url
+# Frontend URL (deployed for Ropsten)
 * [https://damp-wave-55127.herokuapp.com/ ](https://damp-wave-55127.herokuapp.com)
 
 # Running on Ganache
@@ -75,7 +75,7 @@ cd blockchain-developer-bootcamp-final-project
 npm install
 ``` 
 ## Deploy locally
-* Run Ganache listening on port 8545 using mnemonic specified in .env.example
+* Run Ganache listening on port 8545 using mnemonic specified in .env.example (specifying mnemonic is optional)
 ```
 ganache-cli --port 8545 --mnemonic "`head -n 1 .env.example | cut -c 10-`"
 ```
@@ -96,7 +96,7 @@ truffle test
 npm start
 ```
 * Configure metamask on browser to use RPC URL `http://localhost:8545` 
-* Import metamask account private key `0x5e3ed08fab0504e92e831a1402b706dc709ac0ddbc7843ea9d882e91c4db7552` or using mnemonic specified in `.env.example`
+* Import metamask account private key `0x5e3ed08fab0504e92e831a1402b706dc709ac0ddbc7843ea9d882e91c4db7552` or use mnemonic specified in `.env.example`, i.e.
 ```
 payment mushroom trim regular august camp despair kitten hotel impact champion paddle
 ````
@@ -104,27 +104,13 @@ payment mushroom trim regular august camp despair kitten hotel impact champion p
 # Running on Ropsten testnet
 * Copy `.env.example` to `.env` and add your metamask Ropsten seed phrase and Infrua API-KEY and Etherscan API (to verify contract on Ropsten)
 * Fund the first account with some test Ropsten eth
-* Compile, migrate 
-```
-truffle compile
-truffle migrate --network ropsten
-```
-* Verify contract on Ropsten testnet (optional)
-```
-truffle run verify LuckyDrawController --network ropsten
-```
-* Git add & commit smart contract addresses and abi
-```
-git add .
-git commit -m "Add smart contract address and abi"
-```
+* Compile contract `truffle compile`
+* Migrate contract `tuffle migrate --network ropsten`
+* Verify contract on Ropsten testnet (optional) `truffle run verify LuckyDrawController --network ropsten`
+* Git add & commit smart contract addresses and ABI `git add . && git commit -m
 * Install heroku cli (system specific)
-* Create heroku app
-* Deploy frontend to heroku 
-```
-heroku create
-npm run heroku
-```
+* Create heroku app `heroku create`
+* Deploy frontend to heroku `npm run heroku`
 * Access web UI with metamask set to Ropsten testnet
 # Public Ethereum wallet for certification:
 * `0x5B0d420c2b2EA93aAA870B86E0F24EaD4932F46E`
