@@ -7,14 +7,17 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 
 
 contract LuckyDrawController is Ownable, Pausable {
+    event LuckyDrawStateChange(bool paused);
 
       function pause() public onlyOwner returns (bool) {
         _pause();
+        emit LuckyDrawStateChange(true);
         return paused();
     }
 
     function unpause() public onlyOwner returns (bool) {
         _unpause();
+        emit LuckyDrawStateChange(false);
         return paused();
     }
 
@@ -49,7 +52,6 @@ contract LuckyDrawController is Ownable, Pausable {
         luckyDraw.name = _name;
         luckyDraws.push(luckyDraw);
         emit LuckyDrawCreated(luckyDraws.length-1, luckyDraw);
-        
     }    
     
     modifier onlyLuckyDrawOwner(uint256 _luckyDrawId) {

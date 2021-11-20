@@ -70,6 +70,10 @@ const btnSubmitSalt = document.getElementById('setSalt');
 const btnVerifyEntries = document.getElementById('verifyEntries');
 const btnVerifyEntryWithin = document.getElementById('verifyEntryWithin');
 
+const textControllerState = document.getElementById('controllerState');
+const btnGetControllerState = document.getElementById('getControllerState');
+const btnToggleControllerState = document.getElementById('toggleControllerState');
+
 btnCreateLuckyDraw.onclick = async function() {
   console.log("createLuckyDraw clicked");
   console.log(ethereum.selectedAddress);
@@ -238,4 +242,33 @@ btnVerifyEntryWithin.onclick = function() {
     }
   }
   window.alert(`Warning! ${entry} not found`);
+}
+
+function updateControllerState(paused) {
+  if (paused) {
+    textControllerState.value = "Paused";
+  } else {
+    textControllerState.value = "Active";
+  }
+}
+
+btnGetControllerState.onclick = async function() {
+  console.log("Get Controller State clicked")
+  paused = await ldc.methods.paused().call({from: ethereum.selectedAddress})
+  console.log(paused);
+  updateControllerState(paused);
+}
+
+btnToggleControllerState.onclick = async function() {
+  console.log("Toggle Controller State clicked")
+  state = await ldc.methods.paused().call({from: ethereum.selectedAddress})
+  console.log(state);
+  if (state == true) {
+    receipt = await ldc.methods.unpause().send({from: ethereum.selectedAddress})
+  } else {
+    receipt = await ldc.methods.pause().send({from: ethereum.selectedAddress})
+  }
+  console.log(receipt);
+  paused = receipt.events.LuckyDrawStateChange.returnValues.paused
+  updateControllerState(paused);
 }
