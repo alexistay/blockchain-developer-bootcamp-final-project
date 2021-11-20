@@ -52,9 +52,9 @@ cd blockchain-developer-bootcamp-final-project
 npm install
 ``` 
 ### Deploy locally
-* Run Ganache listening on port 8545
+* Run Ganache listening on port 8545 using mnemonic specified in .env.example
 ```
-ganache-cli --port 8545 -m 
+ganache-cli --port 8545 --mnemonic "`head -n 1 .env.example | cut -c 10-`"
 ```
 * In a new terminal window
   * Compile smart contract
@@ -84,10 +84,19 @@ npm start
 truffle compile
 truffle migrate --network ropsten
 ```
-* Deploy frontend to heroku (have to setup heroku account first)
+* Git add & commit smart contract addresses and abi
 ```
-truffle heroku
+git add .
+git commit -m "Add smart contract address and abi"
 ```
+* Install heroku cli
+* Create heroku app
+* Deploy frontend to heroku 
+```
+heroku create
+npm run heroku
+```
+* Access web UI with metamask set to Ropsten testnet
 ## Public Ethereum wallet for certification:
 * `0x5B0d420c2b2EA93aAA870B86E0F24EaD4932F46E`
 
