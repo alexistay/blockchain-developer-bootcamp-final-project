@@ -79,10 +79,11 @@ npm start
 ## Running on Ropsten testnet
 * Copy `.env.example` to `.env` and add your metamask seed phrase and Infrua API-KEY 
 * Fund the first account with some test Ropsten eth
-* Compile and deploy to Ropsten testnet 
+* Compile, migrate and verify contract on Ropsten testnet 
 ```
 truffle compile
 truffle migrate --network ropsten
+truffle run verify LuckyDrawController --network ropsten
 ```
 * Git add & commit smart contract addresses and abi
 ```
