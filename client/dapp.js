@@ -62,7 +62,7 @@ const btnHashEntries = document.getElementById('hashEntries');
 const textHashedEntries = document.getElementById('hashedEntries');
 const textHash = document.getElementById('hash');
 const textNumEntries = document.getElementById('numEntries');
-const textEntryUrl = document.getElementById('entryUrl');
+const textIPFScid = document.getElementById('IPFScid');
 const btnSetEntries = document.getElementById('setEntries');
 const btnPickWinner = document.getElementById('pickWinner');
 const textWinners = document.getElementById('winners');
@@ -93,7 +93,7 @@ btnCreateLuckyDraw.onclick = async function() {
 function clearLuckyDraw() {
   textNameManage.value = "";
   textSalt.value = "";
-  textEntryUrl.value = "";
+  textIPFScid.value = "";
   textState.value = "";
   textNumEntries.value = "";
   textHash.value = "";
@@ -121,7 +121,7 @@ function setLuckyDraw(luckyDraw) {
   if (luckyDraw.salt !=  "") {
     textSalt.value = luckyDraw.salt;
   }
-  textEntryUrl.value = luckyDraw.entriesURL;
+  textIPFScid.value = luckyDraw.entriesIPFScid;
   if (luckyDraw.luckyDrawState == 0) {
     textState.value = "Lucky Draw Created";
   } else if (luckyDraw.luckyDrawState == 1) {
@@ -166,28 +166,27 @@ btnHashEntries.onclick = async function() {
 
   // copyTextToClipboard(textHashedEntries.value);
   cid = await uploadIpfs(textHashedEntries.value);
-  textEntryUrl.value = cid; 
-  //textEntryUrl.value = `https://ipfs.io/ipfs/${cid}`; 
-  // textEntryUrl.value = `${window.location.origin}/client/${optLuckyDrawIds.value}.hash`
+  textIPFScid.value = cid; 
+  //textIPFScid.value = `https://ipfs.io/ipfs/${cid}`; 
+  // textIPFScid.value = `${window.location.origin}/client/${optLuckyDrawIds.value}.hash`
 }
 
 btnSetEntries.onclick = async function() {
   console.log("Set Entries clicked")
   luckyDrawId = optLuckyDrawIds.value;
   entries = textHash.value;
-  entryUrl = textEntryUrl.value;
+  IPFScid = textIPFScid.value;
   numEntries = textNumEntries.value;
   console.log("luckyDrawId: " + luckyDrawId);
   console.log("entries: " + entries);
-  console.log("entryUrl: " + entryUrl);
+  console.log("IPFScid: " + IPFScid);
   console.log("numEntries: " + numEntries);
 
 
-  receipt = await ldc.methods.setEntries(luckyDrawId, entries, entryUrl, numEntries).send({from: ethereum.selectedAddress})
+  receipt = await ldc.methods.setEntries(luckyDrawId, entries, IPFScid, numEntries).send({from: ethereum.selectedAddress})
   luckyDraw = receipt.events.LuckyDrawEntriesSet.returnValues.luckyDraw
   console.log(luckyDraw)
   setLuckyDraw(luckyDraw);
-
 }
 
 btnPickWinner.onclick = async function() {
@@ -212,10 +211,10 @@ btnSubmitSalt.onclick = async function() {
 
 btnVerifyEntries.onclick = async function() {
   console.log("Verify Entries clicked")
-  console.log(textEntryUrl.value);
-  // result = await fetch(textEntryUrl.value)
+  console.log(textIPFScid.value);
+  // result = await fetch(textIPFScid.value)
   // text = await result.text();
-  text = await downloadIpfs(textEntryUrl.value);
+  text = await downloadIpfs(textIPFScid.value);
   text = text.trim();
   textHashedEntries.value = text;
   console.log(text);

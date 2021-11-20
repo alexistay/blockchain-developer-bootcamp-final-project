@@ -1,5 +1,8 @@
 ## Lucky Draw Winner Picker
-This project was inspired due to the controversies in 2019 when Justin Sun promised to give away a Tesla to one lucky Twitter follower. There were reportedly 88 draws done, and even though a video was released of the draw process, it was later claimed that there was a gitch in the selection process and the draw was conducted again. The second winner somehow also appeared in a frame in the original video. https://twitter.com/Tronics4L/status/1111322264828628992
+This project was inspired due to the controversies in 2019 when Justin Sun promised to give away a Tesla to one lucky Twitter follower. There were reportedly [88 draws][1] done, and even though a video was released of the draw process, it was later claimed that there was a gitch in the selection process and the draw was conducted again. The second winner somehow also [appeared in a frame][2] in the original video. 
+
+[1]: https://twitter.com/CryptoJohnGalt/status/1111146257203056640?s=20
+[2]: https://twitter.com/CryptoJohnGalt/status/1111146265100853248?s=20
 
 The main idea is to use the blockchain such that
 * the draw can only be conducted once
@@ -22,7 +25,9 @@ The main idea is to use the blockchain such that
 6. Once all the desired number of winnerse are obtained, operator submits and saved salt onto the blockchain.
 
 ### Lucky Draw Participant
-1. 
+1. Visits webpage and loads lucky draw with lucky draw Id given.
+2. Downloads the concatenated hashed salted entries from IPFS based on the IPFS cid stored in the lucky draw, and confirms that the hash of the concatenated hashed salted entries matches that stored in the lucky draw.
+3. Salt their own entry, hash it, and confirm that the results is within the concatenated hashed salted entries.
 
 ## Directory Structure
 * `client` - frontend files
@@ -34,7 +39,9 @@ The main idea is to use the blockchain such that
 * [https://damp-wave-55127.herokuapp.com/ ](https://damp-wave-55127.herokuapp.com)
 
 ## Installing Dependencies
-* `npm install` 
+```
+npm install
+``` 
 ## Accessing Project
 Clone to local folder
 ```
