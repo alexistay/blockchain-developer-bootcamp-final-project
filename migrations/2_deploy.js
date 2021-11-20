@@ -26,6 +26,8 @@ module.exports = async function (deployer, network, accounts) {
     js = "const ropstenAddress = " + JSON.stringify(deployed.address) + ";\n";
     js += "const ropstenABI = " + JSON.stringify(contract.abi) + ";\n";      
     fs.writeFileSync('./client/ropsten.js', js);
+
+    fs.writeFileSync('./deployed_address.txt', deployed.address);
   }
 
   console.log("LuckyDrawController deployed at " + deployed.address);

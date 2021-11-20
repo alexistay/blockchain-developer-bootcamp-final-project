@@ -27,7 +27,7 @@ The main idea is to use the blockchain such that
 ### Lucky Draw Participant
 1. Visits webpage and loads lucky draw with lucky draw Id given.
 2. Downloads the concatenated hashed salted entries from IPFS based on the IPFS cid stored in the lucky draw, and confirms that the hash of the concatenated hashed salted entries matches that stored in the lucky draw.
-3. Salt their own entry, hash it, and confirm that the results is within the concatenated hashed salted entries.
+3. Salt their own entry, hash it, and confirm that the hashed salted entry is within the concatenated hashed salted entries.
 
 ## Directory Structure
 * `client` - frontend files
