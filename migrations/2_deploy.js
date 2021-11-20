@@ -1,6 +1,8 @@
 // migrations/2_deploy.js
 
-const fs = require('fs');
+//require('dotenv').config()
+
+//const fs = require('fs');
 
 const LuckyDrawController = artifacts.require('LuckyDrawController');
 

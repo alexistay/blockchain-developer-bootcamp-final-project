@@ -38,28 +38,55 @@ The main idea is to use the blockchain such that
 ## Deployed version url
 * [https://damp-wave-55127.herokuapp.com/ ](https://damp-wave-55127.herokuapp.com)
 
-## Installing Dependencies
+## Running on Ganache
+
+### Clone Project
+```
+git clone https://github.com/alexistay/blockchain-developer-bootcamp-final-project
+cd blockchain-developer-bootcamp-final-project
+``` 
+### Installing Dependencies
+* Install Node.js (System specific)
+* Install project dependencies
 ```
 npm install
 ``` 
-## Accessing Project
-Clone to local folder
+### Deploy locally
+* Run Ganache listening on port 8545
 ```
-git clone xxx
+ganache-cli --port 8545 -m 
 ```
-Install Dependencies
+* In a new terminal window
+  * Compile smart contract
+  * Deploy smart contract
 ```
-node install
+truffle compile
+truffle migrate
 ```
-Deploy project to heroku
+
+### Run Smart Contract Tests
 ```
-npm run heroku
-```
-## Running Smart Contract Unit Tests
-* Run ganache-cli listening on port 8545 and chain 1337 (should be the default) and then run `truffle test`
-```
-ganache-cli -m
 truffle test
+```
+### Accessing Locally
+* Start local http server (this is a super simple http server that serves out static files only) 
+```
+npm start
+```
+* Configure metamask on browswer to use RPC URL `http://localhost:8545`
+* Import metamask account 
+*  Access web UI via `http://127.0.0.1:8081`
+## Running on Ropsten testnet
+* Copy `.env.example` to `.env` and add your metamask seed phrase and Infrua API-KEY 
+* Fund the first account with some test Ropsten eth
+* Compile and deploy to Ropsten testnet 
+```
+truffle compile
+truffle migrate --network ropsten
+```
+* Deploy frontend to heroku (have to setup heroku account first)
+```
+truffle heroku
 ```
 ## Public Ethereum wallet for certification:
 * `0x5B0d420c2b2EA93aAA870B86E0F24EaD4932F46E`
