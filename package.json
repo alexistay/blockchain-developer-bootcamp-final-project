@@ -8,7 +8,6 @@
   },
   "scripts": {
     "test": "truffle test",
-    "ganache": "ganache-cli -d --port 8545",
     "start": "npx http-server client",
     "heroku": "git push heroku main"
   },

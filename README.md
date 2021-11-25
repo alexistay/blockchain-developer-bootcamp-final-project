@@ -69,26 +69,26 @@ git clone https://github.com/alexistay/blockchain-developer-bootcamp-final-proje
 cd blockchain-developer-bootcamp-final-project
 ``` 
 ## Installing Dependencies
-* Install Node.js (System specific)
-* Install project dependencies
+* Install Node.js (System specific, tested with v17.0.1)
+* Install project dependencies (includes truffle, ganache-cli)
 ```
 npm install
 ``` 
 ## Deploy locally
 * Run Ganache listening on port 8545 using mnemonic specified in .env.example (specifying mnemonic is optional)
 ```
-ganache-cli --port 8545 --mnemonic "`head -n 1 .env.example | cut -c 10-`"
+npx ganache-cli --port 8545 --mnemonic "`head -n 1 .env.example | cut -c 10-`"
 ```
 * In a new terminal window
   * Compile smart contract
   * Deploy smart contract
 ```
-truffle compile
-truffle migrate
+npx truffle compile
+npx truffle migrate
 ```
 ## Run Smart Contract Tests
 ```
-truffle test
+npx truffle test
 ```
 ## Accessing Locally
 * Start local http server (this is a super simple http server that serves out static files only) 
