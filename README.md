@@ -61,6 +61,8 @@ The main idea is to use the blockchain such that
 # Frontend URL (deployed for Ropsten)
 * [https://damp-wave-55127.herokuapp.com/ ](https://damp-wave-55127.herokuapp.com)
 
+# Video Walkthru
+* `https://youtu.be/A7PKfkv-7Ko`
 # Running on Ganache
 
 ## Clone Project
@@ -104,9 +106,9 @@ payment mushroom trim regular august camp despair kitten hotel impact champion p
 # Running on Ropsten testnet
 * Copy `.env.example` to `.env` and add your metamask Ropsten seed phrase and Infrua API-KEY and Etherscan API (to verify contract on Ropsten)
 * Fund the first account with some test Ropsten eth
-* Compile contract `truffle compile`
-* Migrate contract `tuffle migrate --network ropsten`
-* Verify contract on Ropsten testnet (optional) `truffle run verify LuckyDrawController --network ropsten`
+* Compile contract `npx truffle compile`
+* Migrate contract `npx tuffle migrate --network ropsten`
+* Verify contract on Ropsten testnet (optional) `npx truffle run verify LuckyDrawController --network ropsten`
 * Git add & commit smart contract addresses and ABI `git add . && git commit -m
 * Install heroku cli (system specific)
 * Create heroku app `heroku create`
