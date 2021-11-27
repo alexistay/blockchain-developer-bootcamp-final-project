@@ -81,6 +81,10 @@ npm install
 ```
 npx ganache-cli --port 8545 --mnemonic "`head -n 1 .env.example | cut -c 10-`"
 ```
+* If you get a `Error: error:0308010C:digital envelope routines::unsupported`, try running `export NODE_OPTIONS=--openssl-legacy-provider` (Source: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)
+```
+export NODE_OPTIONS=--openssl-legacy-provider
+```
 * In a new terminal window
   * Compile smart contract
   * Deploy smart contract
