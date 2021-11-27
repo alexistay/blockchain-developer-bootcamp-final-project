@@ -1,7 +1,6 @@
 # Contract security measures
 
 ## SWC-103 (Floating pragma)
-
 Specific compiler pragma `0.8.9` used to ensure that contract do not accidentally get deployed using, for example, an outdated compiler version that might introduce bugs that affect the contract system negatively.
 
 ## SWC-115 (Authorization through tx.origin)
