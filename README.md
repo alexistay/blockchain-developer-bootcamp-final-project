@@ -81,7 +81,7 @@ npm install
 ```
 npx ganache-cli --port 8545 --mnemonic "`head -n 1 .env.example | cut -c 10-`"
 ```
-* If you get a `Error: error:0308010C:digital envelope routines::unsupported`, try running `export NODE_OPTIONS=--openssl-legacy-provider` (Source: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)
+* If you get `Error: error:0308010C:digital envelope routines::unsupported`, try running `export NODE_OPTIONS=--openssl-legacy-provider` and running ganache-cli again (Source: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported)
 ```
 export NODE_OPTIONS=--openssl-legacy-provider
 ```
