@@ -59,10 +59,10 @@ The main idea is to use the blockchain such that
 * `test` - truffle javascript test files for smart contract
 
 # Frontend URL (deployed for Ropsten)
-* [https://damp-wave-55127.herokuapp.com/ ](https://damp-wave-55127.herokuapp.com)
+* https://damp-wave-55127.herokuapp.com/
 
 # Video Walkthru
-* `https://youtu.be/A7PKfkv-7Ko`
+* https://youtu.be/A7PKfkv-7Ko
 # Running on Ganache
 
 ## Clone Project
